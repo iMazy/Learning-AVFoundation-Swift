@@ -16,6 +16,9 @@
 		645BB9CD2507504A006CC56F /* drums.caf in Resources */ = {isa = PBXBuildFile; fileRef = 645BB9CA2507504A006CC56F /* drums.caf */; };
 		645BB9CE2507504A006CC56F /* guitar.caf in Resources */ = {isa = PBXBuildFile; fileRef = 645BB9CB2507504A006CC56F /* guitar.caf */; };
 		645BB9CF2507504A006CC56F /* bass.caf in Resources */ = {isa = PBXBuildFile; fileRef = 645BB9CC2507504A006CC56F /* bass.caf */; };
+		645BB9D12507589F006CC56F /* ALControlKnob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645BB9D02507589F006CC56F /* ALControlKnob.swift */; };
+		645BB9D325075A98006CC56F /* ALIndicatorLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645BB9D225075A98006CC56F /* ALIndicatorLight.swift */; };
+		645BB9D525075C90006CC56F /* UIColor+ALAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645BB9D425075C90006CC56F /* UIColor+ALAdditions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		645BB9CA2507504A006CC56F /* drums.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = drums.caf; sourceTree = "<group>"; };
 		645BB9CB2507504A006CC56F /* guitar.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = guitar.caf; sourceTree = "<group>"; };
 		645BB9CC2507504A006CC56F /* bass.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = bass.caf; sourceTree = "<group>"; };
+		645BB9D02507589F006CC56F /* ALControlKnob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALControlKnob.swift; sourceTree = "<group>"; };
+		645BB9D225075A98006CC56F /* ALIndicatorLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALIndicatorLight.swift; sourceTree = "<group>"; };
+		645BB9D425075C90006CC56F /* UIColor+ALAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ALAdditions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +71,9 @@
 				645BB9B525074F73006CC56F /* AppDelegate.swift */,
 				645BB9B725074F73006CC56F /* SceneDelegate.swift */,
 				645BB9B925074F73006CC56F /* ViewController.swift */,
+				645BB9D02507589F006CC56F /* ALControlKnob.swift */,
+				645BB9D225075A98006CC56F /* ALIndicatorLight.swift */,
+				645BB9D425075C90006CC56F /* UIColor+ALAdditions.swift */,
 				645BB9BB25074F73006CC56F /* Main.storyboard */,
 				645BB9BE25074F73006CC56F /* Assets.xcassets */,
 				645BB9C92507504A006CC56F /* Loops */,
@@ -159,8 +168,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				645BB9D525075C90006CC56F /* UIColor+ALAdditions.swift in Sources */,
 				645BB9BA25074F73006CC56F /* ViewController.swift in Sources */,
 				645BB9B625074F73006CC56F /* AppDelegate.swift in Sources */,
+				645BB9D12507589F006CC56F /* ALControlKnob.swift in Sources */,
+				645BB9D325075A98006CC56F /* ALIndicatorLight.swift in Sources */,
 				645BB9B825074F73006CC56F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
