@@ -19,6 +19,8 @@
 		645BB9D12507589F006CC56F /* ALControlKnob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645BB9D02507589F006CC56F /* ALControlKnob.swift */; };
 		645BB9D325075A98006CC56F /* ALIndicatorLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645BB9D225075A98006CC56F /* ALIndicatorLight.swift */; };
 		645BB9D525075C90006CC56F /* UIColor+ALAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645BB9D425075C90006CC56F /* UIColor+ALAdditions.swift */; };
+		645BB9D725076C3F006CC56F /* ALPlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645BB9D625076C3F006CC56F /* ALPlayButton.swift */; };
+		645BB9D925077075006CC56F /* ALPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645BB9D825077075006CC56F /* ALPlayerManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		645BB9D02507589F006CC56F /* ALControlKnob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALControlKnob.swift; sourceTree = "<group>"; };
 		645BB9D225075A98006CC56F /* ALIndicatorLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALIndicatorLight.swift; sourceTree = "<group>"; };
 		645BB9D425075C90006CC56F /* UIColor+ALAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ALAdditions.swift"; sourceTree = "<group>"; };
+		645BB9D625076C3F006CC56F /* ALPlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALPlayButton.swift; sourceTree = "<group>"; };
+		645BB9D825077075006CC56F /* ALPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALPlayerManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +77,8 @@
 				645BB9B925074F73006CC56F /* ViewController.swift */,
 				645BB9D02507589F006CC56F /* ALControlKnob.swift */,
 				645BB9D225075A98006CC56F /* ALIndicatorLight.swift */,
+				645BB9D625076C3F006CC56F /* ALPlayButton.swift */,
+				645BB9D825077075006CC56F /* ALPlayerManager.swift */,
 				645BB9D425075C90006CC56F /* UIColor+ALAdditions.swift */,
 				645BB9BB25074F73006CC56F /* Main.storyboard */,
 				645BB9BE25074F73006CC56F /* Assets.xcassets */,
@@ -168,10 +174,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				645BB9D725076C3F006CC56F /* ALPlayButton.swift in Sources */,
 				645BB9D525075C90006CC56F /* UIColor+ALAdditions.swift in Sources */,
 				645BB9BA25074F73006CC56F /* ViewController.swift in Sources */,
 				645BB9B625074F73006CC56F /* AppDelegate.swift in Sources */,
 				645BB9D12507589F006CC56F /* ALControlKnob.swift in Sources */,
+				645BB9D925077075006CC56F /* ALPlayerManager.swift in Sources */,
 				645BB9D325075A98006CC56F /* ALIndicatorLight.swift in Sources */,
 				645BB9B825074F73006CC56F /* SceneDelegate.swift in Sources */,
 			);
