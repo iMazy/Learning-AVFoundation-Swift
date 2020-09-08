@@ -12,7 +12,7 @@ import UIKit
 let kMaxAngle: CGFloat = 120
 let kScalingFactor: CGFloat = 4.0
 
-class ALControlKnob: UIControl {
+class ALControlKnob: UIButton {
 
     var defaultValue: CGFloat = 0
     var maximumValue: CGFloat = -1
@@ -38,6 +38,12 @@ class ALControlKnob: UIControl {
         indicatorView.lightColor = UIColor.white
         self.addSubview(indicatorView)
         
+        self.valueDidChangeFrom(defaultValue, newValue: defaultValue, animated: false)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.indicatorView.frame = self.bounds
     }
     
 /// pragma mark - Data Model
@@ -92,7 +98,8 @@ class ALControlKnob: UIControl {
             return false
         }
         let point = touch.location(in: self)
-        self.value = self.valueForPosition(point)
+//        self.value = self.valueForPosition(point)
+        setValue(self.valueForPosition(point), animated: true)
         return true
     }
     
@@ -112,6 +119,7 @@ class ALControlKnob: UIControl {
     }
     
     func valueDidChangeFrom(_ oldValue: CGFloat, newValue: CGFloat, animated: Bool) {
+        
         let newAngle: CGFloat = self.angleForValue(newValue)
         if animated {
             let oldAngle: CGFloat = self.angleForValue(oldValue)
@@ -123,8 +131,9 @@ class ALControlKnob: UIControl {
             animation.keyTimes = [0.0, 0.5, 1.0]
             animation.timingFunctions = [.init(name: .easeIn), .init(name: .easeOut)]
             self.indicatorView.layer.add(animation, forKey: nil)
+        } else {
+//            self.indicatorView.transform = CGAffineTransform(rotationAngle: newAngle * CGFloat.pi / 180.0)
         }
-        self.indicatorView.transform = CGAffineTransform(rotationAngle: newAngle * CGFloat.pi / 180.0)
     }
     
     override func draw(_ rect: CGRect) {
@@ -154,9 +163,8 @@ class ALControlKnob: UIControl {
         context.setFillColor(strokeColor.cgColor)
         context.fillEllipse(in: insetRect)
 
-        let midX = insetRect.minX
-        let midY = insetRect.minY
-
+        let midX = insetRect.midX
+        let midY = insetRect.midY
         // Draw Bezel Light Shadow Layer
         context.addArc(center: CGPoint(x: midX, y: midY), radius: insetRect.width / 2, startAngle: 0, endAngle: CGFloat.pi * 2, clockwise: true)
 //        CGContextAddArc(context, midX, midY, insetRect.width / 2, 0, CGFloat.pi * 2, 1);
@@ -165,7 +173,7 @@ class ALControlKnob: UIControl {
         context.fillPath()
 
         // Add Clipping Region for Knob Background
-        context.addArc(center: CGPoint(x: midX, y: midY), radius: insetRect.width - 6, startAngle: 0, endAngle: CGFloat.pi * 2, clockwise: true)
+        context.addArc(center: CGPoint(x: midX, y: midY), radius: (insetRect.width - 6) / 2, startAngle: 0, endAngle: CGFloat.pi * 2, clockwise: true)
 //        CGContextAddArc(context, midX, midY, (CGRectGetWidth(insetRect) - 6) / 2, 0, M_PI * 2, 1);
         context.clip()
 

@@ -44,13 +44,16 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="npt-A6-bx6">
                                                         <rect key="frame" x="0.0" y="0.0" width="207.5" height="100"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zbV-Xp-txx">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zbV-Xp-txx" customClass="ALOrangeControlKnob" customModule="AudioLooper" customModuleProvider="target">
                                                                 <rect key="frame" x="67.5" y="0.0" width="72" height="72"/>
                                                                 <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="72" id="PHa-cd-nL2"/>
                                                                     <constraint firstAttribute="width" constant="72" id="Wbl-Qt-VOq"/>
                                                                 </constraints>
+                                                                <connections>
+                                                                    <action selector="adjustPanAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OYv-Sa-MNt"/>
+                                                                </connections>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYQ-84-y5k">
                                                                 <rect key="frame" x="91.5" y="73" width="24.5" height="17"/>
@@ -69,13 +72,16 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LH0-1x-Uag">
                                                         <rect key="frame" x="0.0" y="100" width="207.5" height="100"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sdn-UY-iUY">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sdn-UY-iUY" customClass="ALOrangeControlKnob" customModule="AudioLooper" customModuleProvider="target">
                                                                 <rect key="frame" x="67.5" y="0.0" width="72" height="72"/>
                                                                 <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="72" id="0WO-Ei-P6N"/>
                                                                     <constraint firstAttribute="height" constant="72" id="Oyh-l1-RMU"/>
                                                                 </constraints>
+                                                                <connections>
+                                                                    <action selector="adjustVolumeAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iZJ-xb-o59"/>
+                                                                </connections>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Volume" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vd6-aA-eGb">
                                                                 <rect key="frame" x="79.5" y="73" width="48.5" height="17"/>
@@ -99,13 +105,16 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Gg-O8-SEY">
                                                         <rect key="frame" x="0.0" y="0.0" width="207" height="100"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l47-1H-ZNO">
+                                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l47-1H-ZNO" customClass="ALOrangeControlKnob" customModule="AudioLooper" customModuleProvider="target">
                                                                 <rect key="frame" x="67.5" y="0.0" width="72" height="72"/>
                                                                 <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="72" id="SeL-Et-NnP"/>
                                                                     <constraint firstAttribute="height" constant="72" id="vT5-DQ-EdQ"/>
                                                                 </constraints>
+                                                                <connections>
+                                                                    <action selector="adjustPanAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DjM-6R-imE"/>
+                                                                </connections>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k7b-7H-eUe">
                                                                 <rect key="frame" x="91.5" y="73" width="24.5" height="17"/>
@@ -124,13 +133,16 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zXx-y2-bKw">
                                                         <rect key="frame" x="0.0" y="100" width="207" height="100"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cyx-RB-wqN">
+                                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cyx-RB-wqN" customClass="ALOrangeControlKnob" customModule="AudioLooper" customModuleProvider="target">
                                                                 <rect key="frame" x="67.5" y="0.0" width="72" height="72"/>
                                                                 <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="72" id="A8d-nT-OCc"/>
                                                                     <constraint firstAttribute="height" constant="72" id="hwP-EN-bVN"/>
                                                                 </constraints>
+                                                                <connections>
+                                                                    <action selector="adjustVolumeAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6X3-eU-bLe"/>
+                                                                </connections>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Volume" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23F-zX-be8">
                                                                 <rect key="frame" x="79.5" y="73" width="48.5" height="17"/>
@@ -154,13 +166,16 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YuG-Ci-pir">
                                                         <rect key="frame" x="0.0" y="0.0" width="207.5" height="100"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TyC-lQ-HGG">
+                                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TyC-lQ-HGG" customClass="ALOrangeControlKnob" customModule="AudioLooper" customModuleProvider="target">
                                                                 <rect key="frame" x="68" y="0.0" width="72" height="72"/>
                                                                 <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="72" id="AKC-ia-6TK"/>
                                                                     <constraint firstAttribute="width" constant="72" id="EJ5-W1-HFN"/>
                                                                 </constraints>
+                                                                <connections>
+                                                                    <action selector="adjustPanAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="psd-3E-Ma0"/>
+                                                                </connections>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j7x-XM-acP">
                                                                 <rect key="frame" x="91.5" y="73" width="24.5" height="17"/>
@@ -179,13 +194,16 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cP3-lD-wCW">
                                                         <rect key="frame" x="0.0" y="100" width="207.5" height="100"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DbI-iK-zLQ">
+                                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DbI-iK-zLQ" customClass="ALOrangeControlKnob" customModule="AudioLooper" customModuleProvider="target">
                                                                 <rect key="frame" x="68" y="0.0" width="72" height="72"/>
                                                                 <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="72" id="VHv-F4-4UZ"/>
                                                                     <constraint firstAttribute="width" constant="72" id="X8v-Hz-D1E"/>
                                                                 </constraints>
+                                                                <connections>
+                                                                    <action selector="adjustVolumeAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3Sv-lR-uKB"/>
+                                                                </connections>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Volume" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xty-xh-Oq0">
                                                                 <rect key="frame" x="79.5" y="73" width="48.5" height="17"/>
@@ -219,21 +237,27 @@
                                     <constraint firstItem="eDl-gs-UvT" firstAttribute="centerX" secondItem="mGx-y8-OxI" secondAttribute="centerX" id="kGZ-p8-VGG"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QPu-26-9Cm">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QPu-26-9Cm" customClass="ALPlayButton" customModule="AudioLooper" customModuleProvider="target">
                                 <rect key="frame" x="770" y="64.5" width="72" height="72"/>
                                 <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="72" id="QiR-Lu-wek"/>
                                     <constraint firstAttribute="width" constant="72" id="Zrb-4g-GLJ"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="playAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="j8c-gp-87O"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RvI-YF-dLy">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RvI-YF-dLy" customClass="ALGreenControlKnob" customModule="AudioLooper" customModuleProvider="target">
                                 <rect key="frame" x="770" y="220.5" width="72" height="72"/>
                                 <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="72" id="dxo-Pb-sGb"/>
                                     <constraint firstAttribute="width" constant="72" id="hyf-lF-UcE"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="adjustRateAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VRr-DP-FIF"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8O4-fJ-9RD">
                                 <rect key="frame" x="790.5" y="137.5" width="31.5" height="18"/>
@@ -265,6 +289,17 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="playButton" destination="QPu-26-9Cm" id="o8V-Lt-ibs"/>
+                        <outlet property="playLabel" destination="8O4-fJ-9RD" id="7av-cC-wgn"/>
+                        <outlet property="rateKnob" destination="RvI-YF-dLy" id="MTi-Rs-pXV"/>
+                        <outletCollection property="panKnobs" destination="zbV-Xp-txx" collectionClass="NSMutableArray" id="VQH-ra-bre"/>
+                        <outletCollection property="panKnobs" destination="l47-1H-ZNO" collectionClass="NSMutableArray" id="ZyA-JE-urK"/>
+                        <outletCollection property="panKnobs" destination="TyC-lQ-HGG" collectionClass="NSMutableArray" id="fGe-NP-izw"/>
+                        <outletCollection property="volumeKnobs" destination="DbI-iK-zLQ" collectionClass="NSMutableArray" id="Czc-1s-0Fx"/>
+                        <outletCollection property="volumeKnobs" destination="cyx-RB-wqN" collectionClass="NSMutableArray" id="C4j-xP-ZOj"/>
+                        <outletCollection property="volumeKnobs" destination="Sdn-UY-iUY" collectionClass="NSMutableArray" id="mDy-FD-mbP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

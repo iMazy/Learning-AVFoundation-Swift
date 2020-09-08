@@ -22,7 +22,13 @@ class ALPlayButton: UIButton {
     
     func setupView() {
         backgroundColor = .clear
-        setNeedsDisplay()
+        self.tintColor = UIColor.clear
+    }
+    
+    override var isHighlighted: Bool {
+        didSet {
+            self.setNeedsDisplay()
+        }
     }
     
     override func draw(_ rect: CGRect) {
@@ -87,14 +93,12 @@ class ALPlayButton: UIButton {
         // Draw Play Button
         if (!self.isSelected) {
             context.saveGState()
-            context.ctm.translatedBy(x: rect.midX - (iconDim - 3) / 2, y: rect.midY - iconDim / 2)
+            context.translateBy(x: rect.midX - (iconDim - 3) / 2, y: rect.midY - iconDim / 2)
             context.move(to: CGPoint.zero)
             context.addLine(to: CGPoint(x: 0, y: iconDim))
             context.addLine(to: CGPoint(x: iconDim, y: iconDim / 2))
             context.closePath()
             context.drawPath(using: .fill)
-            
-//            CGContextRestoreGState(context);
         }
         // Draw Stop Button
         else {
@@ -102,8 +106,7 @@ class ALPlayButton: UIButton {
             
             let tx: CGFloat = (rect.width - iconDim) / 2
             let ty: CGFloat = (rect.height -  iconDim) / 2
-            context.ctm.translatedBy(x: tx, y: ty)
-            
+            context.translateBy(x: tx, y: ty) // 向左向下平移
             let stopRect = CGRect(x: 0, y: 0, width: iconDim, height: iconDim)
             
             let stopPath = UIBezierPath(roundedRect: stopRect, cornerRadius: 2.0)

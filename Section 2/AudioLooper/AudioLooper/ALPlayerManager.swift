@@ -64,7 +64,7 @@ class ALPlayerManager: NSObject {
     
     // Global methods
     func play() {
-        if self.isPlaying {
+        if !self.isPlaying {
             let delayTime = self.players[0].deviceCurrentTime + 0.01
             for player in self.players {
                 player.play(atTime: delayTime)
