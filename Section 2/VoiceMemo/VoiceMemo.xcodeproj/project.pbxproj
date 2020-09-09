@@ -13,6 +13,10 @@
 		642911AC2508C373000089DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 642911AA2508C373000089DD /* Main.storyboard */; };
 		642911AE2508C374000089DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 642911AD2508C374000089DD /* Assets.xcassets */; };
 		642911B12508C374000089DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 642911AF2508C374000089DD /* LaunchScreen.storyboard */; };
+		642911B92508C96A000089DD /* VMMemoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642911B82508C96A000089DD /* VMMemoViewCell.swift */; };
+		642911BB2508CA5B000089DD /* VMMemoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642911BA2508CA5B000089DD /* VMMemoModel.swift */; };
+		642911BD2508D9D9000089DD /* VMRecorderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642911BC2508D9D9000089DD /* VMRecorderManager.swift */; };
+		642911BF2508FD7F000089DD /* VMLevelPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642911BE2508FD7F000089DD /* VMLevelPair.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		642911AD2508C374000089DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		642911B02508C374000089DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		642911B22508C374000089DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		642911B82508C96A000089DD /* VMMemoViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMMemoViewCell.swift; sourceTree = "<group>"; };
+		642911BA2508CA5B000089DD /* VMMemoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMMemoModel.swift; sourceTree = "<group>"; };
+		642911BC2508D9D9000089DD /* VMRecorderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMRecorderManager.swift; sourceTree = "<group>"; };
+		642911BE2508FD7F000089DD /* VMLevelPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMLevelPair.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +67,10 @@
 				642911A42508C373000089DD /* AppDelegate.swift */,
 				642911A62508C373000089DD /* SceneDelegate.swift */,
 				642911A82508C373000089DD /* ViewController.swift */,
+				642911B82508C96A000089DD /* VMMemoViewCell.swift */,
+				642911BA2508CA5B000089DD /* VMMemoModel.swift */,
+				642911BC2508D9D9000089DD /* VMRecorderManager.swift */,
+				642911BE2508FD7F000089DD /* VMLevelPair.swift */,
 				642911AA2508C373000089DD /* Main.storyboard */,
 				642911AD2508C374000089DD /* Assets.xcassets */,
 				642911AF2508C374000089DD /* LaunchScreen.storyboard */,
@@ -93,6 +105,7 @@
 		642911992508C373000089DD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = VM;
 				LastSwiftUpdateCheck = 1150;
 				LastUpgradeCheck = 1150;
 				ORGANIZATIONNAME = mazy;
@@ -138,9 +151,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				642911BF2508FD7F000089DD /* VMLevelPair.swift in Sources */,
 				642911A92508C373000089DD /* ViewController.swift in Sources */,
 				642911A52508C373000089DD /* AppDelegate.swift in Sources */,
 				642911A72508C373000089DD /* SceneDelegate.swift in Sources */,
+				642911B92508C96A000089DD /* VMMemoViewCell.swift in Sources */,
+				642911BD2508D9D9000089DD /* VMRecorderManager.swift in Sources */,
+				642911BB2508CA5B000089DD /* VMMemoModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
