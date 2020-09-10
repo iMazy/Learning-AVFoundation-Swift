@@ -17,6 +17,7 @@
 		642911BB2508CA5B000089DD /* VMMemoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642911BA2508CA5B000089DD /* VMMemoModel.swift */; };
 		642911BD2508D9D9000089DD /* VMRecorderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642911BC2508D9D9000089DD /* VMRecorderManager.swift */; };
 		642911BF2508FD7F000089DD /* VMLevelPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642911BE2508FD7F000089DD /* VMLevelPair.swift */; };
+		64B5097D250A222D00F903E2 /* VMLevelMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B5097C250A222D00F903E2 /* VMLevelMeterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		642911BA2508CA5B000089DD /* VMMemoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMMemoModel.swift; sourceTree = "<group>"; };
 		642911BC2508D9D9000089DD /* VMRecorderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMRecorderManager.swift; sourceTree = "<group>"; };
 		642911BE2508FD7F000089DD /* VMLevelPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMLevelPair.swift; sourceTree = "<group>"; };
+		64B5097C250A222D00F903E2 /* VMLevelMeterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMLevelMeterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				642911B82508C96A000089DD /* VMMemoViewCell.swift */,
 				642911BA2508CA5B000089DD /* VMMemoModel.swift */,
 				642911BC2508D9D9000089DD /* VMRecorderManager.swift */,
+				64B5097C250A222D00F903E2 /* VMLevelMeterView.swift */,
 				642911BE2508FD7F000089DD /* VMLevelPair.swift */,
 				642911AA2508C373000089DD /* Main.storyboard */,
 				642911AD2508C374000089DD /* Assets.xcassets */,
@@ -155,6 +158,7 @@
 				642911A92508C373000089DD /* ViewController.swift in Sources */,
 				642911A52508C373000089DD /* AppDelegate.swift in Sources */,
 				642911A72508C373000089DD /* SceneDelegate.swift in Sources */,
+				64B5097D250A222D00F903E2 /* VMLevelMeterView.swift in Sources */,
 				642911B92508C96A000089DD /* VMMemoViewCell.swift in Sources */,
 				642911BD2508D9D9000089DD /* VMRecorderManager.swift in Sources */,
 				642911BB2508CA5B000089DD /* VMMemoModel.swift in Sources */,

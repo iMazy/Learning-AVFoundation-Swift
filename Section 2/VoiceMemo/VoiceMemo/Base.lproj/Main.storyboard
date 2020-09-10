@@ -18,7 +18,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AXr-qP-mFg">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="220"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OQI-Qm-Ips">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OQI-Qm-Ips" customClass="VMLevelMeterView" customModule="VoiceMemo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="210" width="414" height="10"/>
                                         <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -37,10 +37,16 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQW-9T-CnX">
                                                 <rect key="frame" x="0.0" y="0.0" width="71" height="70"/>
                                                 <state key="normal" image="record" backgroundImage="transport_bg"/>
+                                                <connections>
+                                                    <action selector="recordAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="II9-e3-Q5H"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yv3-Mi-zNP">
                                                 <rect key="frame" x="121" y="0.0" width="71" height="70"/>
                                                 <state key="normal" image="stop" backgroundImage="transport_bg"/>
+                                                <connections>
+                                                    <action selector="stopRecordingAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Xf5-iX-OwT"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -127,6 +133,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="levelMeterView" destination="OQI-Qm-Ips" id="a4o-mg-1k4"/>
                         <outlet property="recordButton" destination="aQW-9T-CnX" id="g5d-Uc-7sd"/>
                         <outlet property="stopButton" destination="Yv3-Mi-zNP" id="pu2-f7-6tD"/>
                         <outlet property="tableView" destination="BMH-cZ-jMJ" id="VgG-9p-N5M"/>

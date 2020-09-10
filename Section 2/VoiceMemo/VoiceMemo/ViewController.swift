@@ -14,18 +14,132 @@ class ViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
-
+    @IBOutlet weak var levelMeterView: VMLevelMeterView!
+    
     private var memos: [VMMemoModel] = []
     private var levelTimer: CADisplayLink?
     private var timer: Timer?
+    private lazy var manager: VMRecorderManager = VMRecorderManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        self.manager.delegate = self
+        self.stopButton.isEnabled = false
+        
+        let recordImage = UIImage(named: "record")
+        let pauseImage = UIImage(named: "pause")
+        let stopImage = UIImage(named: "stop")
+        
+        self.recordButton.setImage(recordImage, for: .normal)
+        self.recordButton.setImage(pauseImage, for: .selected)
+        self.stopButton.setImage(stopImage, for: .normal)
+        
+        if var docsDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first {
+            docsDir.append("memos.archive")
+            
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: docsDir))
+            } catch {
+                
+            }
+        }
+    }
+    
+    @IBAction func recordAction(_ sender: UIButton) {
+        self.stopButton.isEnabled = true
+        if !sender.isSelected {
+            self.startMeterTimer()
+            self.startTimer()
+            self.manager.record()
+        } else {
+            self.stopMeterTimer()
+            self.stopTimer()
+            self.manager.pause()
+        }
+        sender.isSelected = !sender.isSelected
+    }
+    
+    @IBAction func stopRecordingAction(_ sender: UIButton) {
+        self.stopMeterTimer()
+        self.recordButton.isSelected = false
+        self.stopButton.isEnabled = false
+        self.manager.stopWithCompletionHandler { (result) in
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+                self.showSaveDialog()
+            }
+        }
+    }
+    
+    func showSaveDialog()  {
+        let alertVC = UIAlertController(title: "Save Recording", message: "Please provide a name", preferredStyle: .alert)
+        alertVC.addTextField { (textField) in
+            textField.placeholder = "My Recording"
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+            let filename = alertVC.textFields?.first?.text ?? ""
+            self.manager.saveRecordingWithName(filename) { (result, model) in
+                if result {
+                    if let memo = model {
+                        self.memos.append(memo)
+                    }
+                    self.tableView.reloadData()
+                }
+            }
+        }
+        alertVC.addAction(cancelAction)
+        alertVC.addAction(okAction)
+        self.present(alertVC, animated: true, completion: nil)
+    }
+    
+    func startTimer() {
+        self.timer?.invalidate()
+        self.timer = Timer(timeInterval: 0.5, target: self, selector: #selector(updateTimeDisplay), userInfo: nil, repeats: true)
+        RunLoop.current.add(self.timer!, forMode: .common)
+    }
+    
+    @objc func updateTimeDisplay() {
+        self.timeLabel.text = self.manager.formattedCurrentTime
+    }
+    
+    func stopTimer() {
+        self.timer?.invalidate()
+        self.timer = nil
+    }
+    
+    
+    func startMeterTimer() {
+        self.levelTimer?.invalidate()
+        self.levelTimer = CADisplayLink(target: self, selector: #selector(updateMeter))
+        self.levelTimer?.preferredFramesPerSecond = 5
+        self.levelTimer?.add(to: RunLoop.current, forMode: .common)
+    }
+    
+    func stopMeterTimer()  {
+        self.levelTimer?.invalidate()
+        self.levelTimer = nil
+        self.levelMeterView.resetLevelMeter()
     }
 
-    
-    
+    @objc func updateMeter() {
+        let levels: VMLevelPair = self.manager.levels
+        self.levelMeterView.level = CGFloat(levels.level)
+        self.levelMeterView.peakLevel = CGFloat(levels.peakLevel)
+        self.levelMeterView.setNeedsDisplay()
+        
+    }
+}
+
+/// VMRecorderManagerDelegate
+extension ViewController: VMRecorderManagerDelegate {
+    ///
+    func interruptionBegan() {
+        self.recordButton.isSelected = false
+        self.stopMeterTimer()
+        self.stopTimer()
+    }
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate  {
