@@ -18,51 +18,82 @@ class VMRecorderManager: NSObject {
     var delegate: VMRecorderManagerDelegate?
     public var completionHandler: ((Bool)->Void)?
     
-    lazy var levels: VMLevelPair = {
+    var levels: VMLevelPair {
         self.recorder?.updateMeters()
         let avgPower =  self.recorder?.averagePower(forChannel: 0) ?? 0
         let peakPower = self.recorder?.peakPower(forChannel: 0) ?? 0
         let linearLevel = self.meterTable.valueForPower(avgPower)
         let linearPeak = self.meterTable.valueForPower(peakPower)
         return VMLevelPair(with: linearLevel, peakLevel: linearPeak)
-    }()
+    }
     
     private var player: AVAudioPlayer?
     private var recorder: AVAudioRecorder?
     private lazy var meterTable: VMMeterTable = VMMeterTable()
-    
+
     override init() {
         super.init()
         
         let tmpDir = NSTemporaryDirectory()
-        let filePath = tmpDir + "memo.caf"
+        let filePath = tmpDir + "memo.m4a"
         let fileURL = URL(fileURLWithPath: filePath)
-
-        let settings: [String: Any] = [ AVFormatIDKey : kAudioFormatAppleIMA4,
-                         AVSampleRateKey : 44100.0,
-                         AVNumberOfChannelsKey : 1,
-                         AVEncoderBitDepthHintKey : 16,
-                         AVEncoderAudioQualityKey : AVAudioQuality.medium
-                            ]
-
-        self.recorder = try? AVAudioRecorder(url: fileURL, settings: settings)
-        self.recorder?.delegate = self;
-        self.recorder?.isMeteringEnabled = true
-        self.recorder?.prepareToRecord()
+    
+        let settings: [String: Any] = [ AVFormatIDKey : kAudioFormatAppleLossless,
+                                        AVEncoderAudioQualityKey: AVAudioQuality.max.rawValue,
+                                        AVEncoderBitRateKey: 32000,
+                                        AVNumberOfChannelsKey: 2,
+                                        AVSampleRateKey: 44100.0]
+//        print(fileURL)
+        
+        AVAudioSession.sharedInstance().requestRecordPermission { (result) in
+            if result {
+                DispatchQueue.main.async {
+                    self.recorder = try? AVAudioRecorder(url: fileURL, settings: settings)
+                    self.recorder?.delegate = self;
+                    self.recorder?.isMeteringEnabled = true
+                    self.recorder?.prepareToRecord()
+                    
+                }
+            }
+        }
+        
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playAndRecord)
+            try AVAudioSession.sharedInstance().setActive(true, options: .init(rawValue: 0))
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     var formattedCurrentTime: String {
 
         let time = self.recorder?.currentTime ?? 0
-        let hours = (time / 3600)
-        let minutes = (time / 60).truncatingRemainder(dividingBy: 60)
-        let seconds = time.truncatingRemainder(dividingBy: 60)
-        let format = "%02i:%02i:%02i"
+        let hours = Int(time / 3600)
+        let minutes = Int((time / 60).truncatingRemainder(dividingBy: 60))
+        let seconds = Int(time.truncatingRemainder(dividingBy: 60))
+        let format = "%02d:%02d:%02d"
         return String(format: format, hours, minutes, seconds)
     }
     
     // Recorder methods
     func record() -> Bool {
+        switch AVAudioSession.sharedInstance().recordPermission {
+        case .undetermined:
+            AVAudioSession.sharedInstance().requestRecordPermission { [weak self] (granted) in
+                DispatchQueue.main.async {
+                    if granted {
+                        self?.recorder?.record()
+                    }
+                }
+            }
+        case .denied:
+            break
+        case .granted:
+            return self.recorder?.record() ?? false
+        default:
+            break
+        }
         return self.recorder?.record() ?? false
     }
     
@@ -85,14 +116,16 @@ class VMRecorderManager: NSObject {
     }
     
     func stopWithCompletionHandler(_ completed: @escaping ((Bool)->Void)) {
-        self.completionHandler = completed
+//        self.completionHandler = completed
         self.recorder?.stop()
+        completed(true)
     }
     
     func saveRecordingWithName(_ name: String, completionHandler: @escaping ((Bool, VMMemoModel?)->Void)) {
         
-        let timestamp = Date.timeIntervalSinceReferenceDate
-        let filename = "\(name)-\(timestamp).m4a"
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMddHHmmss"
+        let filename = "/\(name)-\(formatter.string(from: Date())).m4a"
         
         guard let docsDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else { return }
         // MARK -
@@ -151,7 +184,7 @@ class VMMeterTable: NSObject {
     }
     
     func dbToAmp(_ dB: Float) -> Float {
-        return powf(10.0, Float(5.0 * dB))
+        return powf(10.0, Float(0.05 * dB))
     }
     
     func valueForPower(_ power: Float) -> Float {

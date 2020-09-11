@@ -90,7 +90,7 @@ class VMLevelMeterView: UIView {
      
             let height = self.bounds.height
             let width = self.bounds.width
-            let ledRect = CGRect(x: 0, y: height * CGFloat(index/self.ledCount), width: width, height: height * CGFloat(1.0 / Double(self.ledCount)))
+            let ledRect = CGRect(x: 0, y: height * CGFloat(index/self.ledCount), width: height, height: width * CGFloat(1.0 / Double(self.ledCount)))
             
             context.setFillColor(self.ledBackgroundColor.cgColor)
             context.fill(ledRect)
@@ -119,10 +119,9 @@ class VMLevelMeterView: UIView {
             }
             let fillPath = UIBezierPath(roundedRect: ledRect, cornerRadius: 2.0)
             context.addPath(fillPath.cgPath)
-            
             context.setStrokeColor(self.ledBorderColor.cgColor)
-            let strokePath = UIBezierPath(roundedRect: ledRect.insetBy(dx: 0.5, dy: 0.5), cornerRadius: 2.0)
-            
+//            return
+            let strokePath = UIBezierPath(roundedRect: ledRect.insetBy(dx: 1, dy: 1), cornerRadius: 2.0)
             context.addPath(strokePath.cgPath)
             context.drawPath(using: .fillStroke)
             

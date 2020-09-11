@@ -14,6 +14,12 @@ class VMMemoViewCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     
+    func configWithModel(_ model: VMMemoModel) {
+        mainTitleLabel.text = model.title
+        dateLabel.text = model.dateString
+        timeLabel.text = model.timeString
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

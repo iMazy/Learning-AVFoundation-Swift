@@ -15,9 +15,6 @@ class VMMemoModel: NSObject {
     var dateString: String = ""
     var timeString: String = ""
 
-//    static func memoWithTitle(_ title: String, url: URL) {
-//        return self.init()
-//    }
     convenience init(title: String, url: URL) {
         self.init()
         self.title = title

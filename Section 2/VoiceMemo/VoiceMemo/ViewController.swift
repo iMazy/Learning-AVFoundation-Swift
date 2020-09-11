@@ -27,23 +27,42 @@ class ViewController: UIViewController {
         
         self.manager.delegate = self
         self.stopButton.isEnabled = false
-        
+
         let recordImage = UIImage(named: "record")
         let pauseImage = UIImage(named: "pause")
         let stopImage = UIImage(named: "stop")
-        
+
         self.recordButton.setImage(recordImage, for: .normal)
         self.recordButton.setImage(pauseImage, for: .selected)
         self.stopButton.setImage(stopImage, for: .normal)
         
-        if var docsDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first {
-            docsDir.append("memos.archive")
+        if  let docsDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first,
+            let url = URL(string: docsDir) {
+            guard let directoryContents = try? FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: nil, options: []) else { return }
+//            print("directoryContents \(directoryContents)")
             
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: docsDir))
-            } catch {
+            for url in directoryContents {
                 
+                if url.absoluteString.hasSuffix("m4a") {
+                    
+                    let lastPathComponent = url.lastPathComponent.replacingOccurrences(of: ".m4a", with: "")
+                    let infos = lastPathComponent.components(separatedBy: "-")
+                    guard let name = infos.first, let time = infos.last else { return }
+                    let model = VMMemoModel(title: name, url: url)
+                    
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "yyyyMMddHHmmss"
+                    if let date = formatter.date(from: time) {
+                        model.dateString = model.dateStringWithDate(date)
+                        model.timeString = model.timeStringWithDate(date)
+                    }
+                    self.memos.append(model)
+                    print(url.lastPathComponent)
+                }
             }
+            
+            self.tableView.reloadData()
+
         }
     }
     
@@ -52,7 +71,8 @@ class ViewController: UIViewController {
         if !sender.isSelected {
             self.startMeterTimer()
             self.startTimer()
-            self.manager.record()
+            let result = self.manager.record()
+            print("start result: \(result)")
         } else {
             self.stopMeterTimer()
             self.stopTimer()
@@ -128,7 +148,6 @@ class ViewController: UIViewController {
         self.levelMeterView.level = CGFloat(levels.level)
         self.levelMeterView.peakLevel = CGFloat(levels.peakLevel)
         self.levelMeterView.setNeedsDisplay()
-        
     }
 }
 
@@ -142,17 +161,20 @@ extension ViewController: VMRecorderManagerDelegate {
     }
 }
 
-extension ViewController: UITableViewDataSource, UITableViewDelegate  {
+/// MARK: - UITableViewDataSource, UITableViewDelegate
+extension ViewController: UITableViewDataSource, UITableViewDelegate {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return self.memos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: VMMemoViewCell = tableView.dequeueReusableCell(withIdentifier: "VMMemoViewCell", for: indexPath) as! VMMemoViewCell
+        cell.configWithModel(memos[indexPath.row])
         return cell
     }
 }
