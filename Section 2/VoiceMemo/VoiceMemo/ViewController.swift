@@ -25,6 +25,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        self.tableView.rowHeight = 50
+        self.tableView.tableFooterView = UIView()
+        
         self.manager.delegate = self
         self.stopButton.isEnabled = false
 
@@ -54,6 +57,7 @@ class ViewController: UIViewController {
                     let model = VMMemoModel(title: name, url: url)
                     print(url.lastPathComponent)
                     self.memos.append(model)
+                    self.memos.reverse()
                 }
             }
             
@@ -99,7 +103,7 @@ class ViewController: UIViewController {
             self.manager.saveRecordingWithName(filename) { (result, model) in
                 if result {
                     if let memo = model {
-                        self.memos.append(memo)
+                        self.memos.insert(memo, at: 0)
                     }
                     self.tableView.reloadData()
                 }
@@ -170,7 +174,25 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: VMMemoViewCell = tableView.dequeueReusableCell(withIdentifier: "VMMemoViewCell", for: indexPath) as! VMMemoViewCell
-        cell.configWithModel(memos.reversed()[indexPath.row])
+        cell.configWithModel(memos[indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let memo = memos[indexPath.row]
+        _ = self.manager.playbackMemo(memo)
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let memo = memos[indexPath.row]
+            _ = memo.deleteMemo()
+            memos.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
     }
 }
