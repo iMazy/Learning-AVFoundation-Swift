@@ -36,33 +36,29 @@ class ViewController: UIViewController {
         self.recordButton.setImage(pauseImage, for: .selected)
         self.stopButton.setImage(stopImage, for: .normal)
         
+        loadMemos()
+    }
+    
+    private func loadMemos() {
+        self.memos.removeAll()
         if  let docsDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first,
             let url = URL(string: docsDir) {
             guard let directoryContents = try? FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: nil, options: []) else { return }
-//            print("directoryContents \(directoryContents)")
+            // print("directoryContents \(directoryContents)")
             
             for url in directoryContents {
-                
                 if url.absoluteString.hasSuffix("m4a") {
-                    
                     let lastPathComponent = url.lastPathComponent.replacingOccurrences(of: ".m4a", with: "")
                     let infos = lastPathComponent.components(separatedBy: "-")
-                    guard let name = infos.first, let time = infos.last else { return }
+                    guard let name = infos.first else { return }
                     let model = VMMemoModel(title: name, url: url)
-                    
-                    let formatter = DateFormatter()
-                    formatter.dateFormat = "yyyyMMddHHmmss"
-                    if let date = formatter.date(from: time) {
-                        model.dateString = model.dateStringWithDate(date)
-                        model.timeString = model.timeStringWithDate(date)
-                    }
-                    self.memos.append(model)
                     print(url.lastPathComponent)
+                    self.memos.append(model)
                 }
             }
             
             self.tableView.reloadData()
-
+            
         }
     }
     
@@ -174,7 +170,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: VMMemoViewCell = tableView.dequeueReusableCell(withIdentifier: "VMMemoViewCell", for: indexPath) as! VMMemoViewCell
-        cell.configWithModel(memos[indexPath.row])
+        cell.configWithModel(memos.reversed()[indexPath.row])
         return cell
     }
 }

@@ -19,7 +19,15 @@ class VMMemoModel: NSObject {
         self.init()
         self.title = title
         self.url = url
-        
+        let lastPathComponent = url.lastPathComponent.replacingOccurrences(of: ".m4a", with: "")
+        let infos = lastPathComponent.components(separatedBy: "-")
+        guard let time = infos.last else { return }
+        let formatter = DateFormatter()
+          formatter.dateFormat = "yyyyMMddHHmmss"
+          if let date = formatter.date(from: time) {
+              self.dateString = self.dateStringWithDate(date)
+              self.timeString = self.timeStringWithDate(date)
+          }
     }
     
     func deleteMemo() -> Bool {
