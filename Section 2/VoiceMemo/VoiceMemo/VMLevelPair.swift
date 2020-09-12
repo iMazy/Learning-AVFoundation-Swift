@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// 数据模型
 class VMLevelPair: NSObject {
 
     var level: Float = 0

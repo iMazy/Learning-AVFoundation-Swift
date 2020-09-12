@@ -10,9 +10,9 @@ import UIKit
 
 class VMMemoViewCell: UITableViewCell {
 
-    @IBOutlet weak var mainTitleLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var mainTitleLabel: UILabel! // 名称
+    @IBOutlet weak var dateLabel: UILabel! // 日期
+    @IBOutlet weak var timeLabel: UILabel! // 时间
     
     func configWithModel(_ model: VMMemoModel) {
         mainTitleLabel.text = model.title

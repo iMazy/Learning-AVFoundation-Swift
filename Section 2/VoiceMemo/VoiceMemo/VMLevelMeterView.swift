@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// 音频波形图
 class VMLevelMeterView: UIView {
 
     public var level: CGFloat = 0
